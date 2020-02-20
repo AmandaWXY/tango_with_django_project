@@ -20,11 +20,17 @@ def index(request):
 	context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
 	context_dict['categories'] = category_list
 
+# Including top 5 most viewed pages.
+	page_list = Page.objects.order_by('-views')[:5]
+	context_dict['pages'] = page_list
+
+
 # Return a rendered response to send to the client.
 # We make use of the shortcut function to make our lives easier.
 # Note that the first parameter is the template we wish to use.
 # Render the response and send it back!
 	return render(request, 'rango/index.html', context=context_dict)
+
 
 def about(request):
 	context_dict = {'boldmessage': 'This tutorial has been put together by XINYU WU'}
